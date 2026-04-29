@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ron Sparks — Founder, Designer, Place Builder</title>
+  <meta name="description" content="Ron Sparks builds brands, communities, and places worth finding. Founder of Hush Hush Coffee Co. Based in Bend, Oregon." />
+  <meta property="og:title" content="Ron Sparks — builds places worth finding" />
+  <meta property="og:description" content="Founder of Hush Hush Coffee Co. Designer, builder, and obsessive about how people find each other." />
+  <meta property="og:image" content="https://placebuilding.com/0-main.jpg" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Ron Sparks — builds places worth finding" />
+  <meta name="twitter:description" content="Founder of Hush Hush Coffee Co. Designer, builder, and obsessive about how people find each other." />
+  <meta name="twitter:image" content="https://placebuilding.com/0-main.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #F5F0E8;
+      --ink: #1C1815;
+      --muted: #7A7169;
+      --accent: #B8733A;
+      --accent2: #4A7C6F;
+      --card: #EDE7DB;
+      --border: #DDD7CC;
+      --shadow: 0 12px 40px rgba(28,24,21,0.10);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Lora', Georgia, serif;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+      opacity: 0.35;
+      z-index: 0;
+    }
+
+    .hero,
+    .cards-section,
+    .currently,
+    .cta,
+    .footer {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100svh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      position: relative;
+    }
+
+    .hero-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 4rem 3rem 4rem 4rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hello {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: rise 0.8s ease forwards 0.1s;
+    }
+
+    h1 {
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      font-weight: 400;
+      line-height: 1.03;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.35rem;
+      opacity: 0;
+      animation: rise 0.8s ease forwards 0.2s;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-bio {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--muted);
+      max-width: 420px;
+      opacity: 0;
+      animation: rise 0.8s ease forwards 0.35s;
+    }
+
+    .hero-bio strong {
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    .hero-actions {
+      margin-top: 3rem;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      opacity: 0;
+      animation: rise 0.8s ease forwards 0.6s;
+    }
+
+    .scroll-hint {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .scroll-hint::before {
+      content: '';
+      display: block;
+      width: 1.5rem;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .hero-contact {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--bg);
+      background: var(--ink);
+      padding: 0.72rem 1.5rem;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .hero-contact:hover {
+      opacity: 0.88;
+      transform: translateY(-1px);
+    }
+
+    .hero-ig {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 6px;
+      border: 1.5px solid var(--border);
+      color: var(--muted);
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .hero-ig:hover {
+      border-color: var(--ink);
+      color: var(--ink);
+    }
+
+    .hero-photos {
+      position: relative;
+      overflow: hidden;
+      background: var(--card);
+      opacity: 0;
+      animation: rise 1s ease forwards 0.4s;
+    }
+
+    .hero-photos::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(28,24,21,0.04) 0%, rgba(28,24,21,0.02) 40%, rgba(28,24,21,0.16) 100%);
+      pointer-events: none;
+    }
+
+    .hero-photos .photo-main {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ── CARDS SECTION ── */
+    .cards-section {
+      padding: 5rem 4rem;
+      background: var(--bg);
+    }
+
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 2.5rem;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 12px;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid rgba(221, 215, 204, 0.65);
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+
+    .card-photo {
+      aspect-ratio: 4/3;
+      background: var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-photo::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(28,24,21,0.00) 45%, rgba(28,24,21,0.10) 100%);
+      pointer-events: none;
+    }
+
+    .card-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-bar {
+      height: 3px;
+      width: 100%;
+    }
+
+    .card-body {
+      padding: 1.25rem 1.25rem 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .card-title {
+      font-size: 1.05rem;
+      font-weight: 500;
+      line-height: 1.35;
+      margin-bottom: 0.6rem;
+    }
+
+    .card-desc {
+      font-size: 0.95rem;
+      line-height: 1.65;
+      color: #5A544C;
+      font-style: italic;
+      flex: 1;
+    }
+
+    .card-link {
+      margin-top: 1.25rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    /* ── CURRENTLY ── */
+    .currently {
+      padding: 4rem;
+      border-top: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .currently-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      padding-top: 0.15rem;
+    }
+
+    .currently-items {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      max-width: 760px;
+    }
+
+    .currently-item {
+      display: flex;
+      gap: 1rem;
+      align-items: baseline;
+    }
+
+    .ci-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      opacity: 0.5;
+      flex-shrink: 0;
+      margin-top: 0.4rem;
+    }
+
+    .ci-text {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--ink);
+    }
+
+    .ci-text em {
+      font-style: italic;
+      color: var(--muted);
+    }
+
+    /* ── CTA ── */
+    .cta {
+      padding: 5rem 4rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .cta-line {
+      font-size: 1.15rem;
+      font-style: italic;
+      color: var(--muted);
+      margin-bottom: 2rem;
+      max-width: 38rem;
+      margin-inline: auto;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--bg);
+      background: var(--ink);
+      padding: 0.9rem 2.5rem;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .cta-btn:hover {
+      opacity: 0.88;
+      transform: translateY(-1px);
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      padding: 2.5rem 4rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-name {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    .footer-links a:hover { opacity: 0.6; }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 700px) {
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      .hero-photos {
+        aspect-ratio: 3/2;
+        order: -1;
+      }
+
+      .hero-text {
+        padding: 2rem 1.5rem 2.5rem;
+      }
+
+      .hello {
+        margin-bottom: 1rem;
+      }
+
+      h1 {
+        font-size: 2.2rem;
+        margin-bottom: 1.2rem;
+      }
+
+      .hero-bio {
+        font-size: 0.95rem;
+        max-width: none;
+      }
+
+      .hero-actions {
+        margin-top: 2rem;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 1.25rem;
+      }
+
+      .hero-contact {
+        padding: 0.7rem 1.8rem;
+      }
+
+      .cards-section {
+        padding: 2.5rem 1.25rem;
+      }
+
+      .section-label {
+        margin-bottom: 1.5rem;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .card-photo {
+        aspect-ratio: 16/9;
+      }
+
+      .card-body {
+        padding: 1rem 1rem 1.25rem;
+      }
+
+      .currently {
+        padding: 2.5rem 1.5rem;
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+      }
+
+      .ci-text {
+        font-size: 0.92rem;
+      }
+
+      .cta {
+        padding: 3rem 1.5rem;
+      }
+
+      .cta-line {
+        font-size: 1.05rem;
+      }
+
+      .footer {
+        padding: 2rem 1.5rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-text">
+      <p class="hello">Bend, Oregon</p>
+      <h1>Ron <em>Sparks</em><br>builds places<br>worth finding.</h1>
+      <p class="hero-bio">
+        <strong>Founder, designer, and builder of things people want to belong to.</strong>
+        I care about brands with gravity, communities with a point of view, and products that make the right people lean in. That’s the thread.
+      </p>
+      <div class="hero-actions">
+        <a href="#work" class="scroll-hint" style="text-decoration:none;color:inherit;">Keep going</a>
+        <a class="hero-contact" href="mailto:ron@ron-sparks.com">Email me ↗</a>
+        <a class="hero-ig" href="https://www.instagram.com/hushhushcoffee/" target="_blank" rel="noopener noreferrer" aria-label="Hush Hush on Instagram">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="hero-photos">
+      <img class="photo-main" src="0-main.jpg" alt="Ron Sparks at a Hush Hush pop-up" />
+    </div>
+  </section>
+
+  <!-- CARDS -->
+  <section class="cards-section" id="work">
+    <p class="section-label">What I'm building</p>
+    <div class="cards">
+
+      <a class="card" href="https://hushhushcoffee.com" target="_blank" rel="noopener noreferrer">
+        <div class="card-photo">
+          <img src="1-hush.jpg" alt="Hush Hush Coffee pop-up" />
+        </div>
+        <div class="card-bar" style="background: var(--accent);"></div>
+        <div class="card-body">
+          <p class="card-tag">Coffee · Community</p>
+          <p class="card-title">Hush Hush Coffee Co.</p>
+          <p class="card-desc">A semi-secret coffee brand built around ritual, gathering, and word of mouth. Part nomadic café, part club, part proof that good things travel.</p>
+          <p class="card-link">Visit ↗</p>
+        </div>
+      </a>
+
+      <a class="card" href="https://open.spotify.com/artist/2p5ZdJATya3NVD9lUjlKzk" target="_blank" rel="noopener noreferrer">
+        <div class="card-photo">
+          <img src="2-music.jpg" alt="Ron at Sunrise music setup" />
+        </div>
+        <div class="card-bar" style="background: var(--accent2);"></div>
+        <div class="card-body">
+          <p class="card-tag">Music · Ambient</p>
+          <p class="card-title">Ron at Sunrise</p>
+          <p class="card-desc">Ambient and electronic music made in the slow hours before the day gets loud. More signal than content. A mood, a world, a rhythm.</p>
+          <p class="card-link" style="color: var(--accent2)">Listen ↗</p>
+        </div>
+      </a>
+
+      <a class="card" href="mailto:ron@ron-sparks.com">
+        <div class="card-photo">
+          <img src="3-collab.jpg" alt="Ron Sparks collaborations and partnerships" />
+        </div>
+        <div class="card-bar" style="background: #8A7560;"></div>
+        <div class="card-body">
+          <p class="card-tag">Collaborations · Partnerships</p>
+          <p class="card-title">Work Together</p>
+          <p class="card-desc">If you invest early, build with taste, or want to make something people talk about because they felt it first, we should probably talk.</p>
+          <p class="card-link" style="color: #8A7560;">Get in touch ↗</p>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- CURRENTLY -->
+  <section class="currently">
+    <p class="currently-label">Currently</p>
+    <div class="currently-items">
+      <div class="currently-item">
+        <div class="ci-dot"></div>
+        <p class="ci-text">Growing <strong>Hush Hush Coffee</strong> into a brand people discover, join, and bring their friends into <em>without needing the hard sell</em> — including the <a href="https://nomadic.hushhushcoffee.com" target="_blank" rel="noopener noreferrer" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--border);">Nomadic Café</a> program</p>
+      </div>
+      <div class="currently-item">
+        <div class="ci-dot"></div>
+        <p class="ci-text">Exploring ways to turn <strong>place, ritual, and community</strong> into repeatable systems that scale without losing the feeling</p>
+      </div>
+      <div class="currently-item">
+        <div class="ci-dot"></div>
+        <p class="ci-text">Leading product design for <strong>retail and commerce technology</strong> and thinking about how digital systems shape physical experience</p>
+      </div>
+      <div class="currently-item">
+        <div class="ci-dot"></div>
+        <p class="ci-text">Making ambient music, riding bikes, and living in <strong>Bend, Oregon</strong> <em>where most of my best ideas seem to start outdoors</em></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <p class="cta-line">For investors, collaborators, and fellow builders who can feel where this is going.</p>
+    <a class="cta-btn" href="mailto:ron@ron-sparks.com">Start a conversation</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p class="footer-name">Ron Sparks · Bend, Oregon</p>
+    <div class="footer-links">
+      <a href="https://hushhushcoffee.com" target="_blank" rel="noopener noreferrer">Hush Hush</a>
+      <a href="https://open.spotify.com/artist/2p5ZdJATya3NVD9lUjlKzk" target="_blank" rel="noopener noreferrer">Music</a>
+      <a href="https://nomadic.hushhushcoffee.com" target="_blank" rel="noopener noreferrer">Nomadic</a>
+      <a href="mailto:ron@ron-sparks.com">Email</a>
+    </div>
+  </footer>
+
+</body>
+</html>
